@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Depois de publicar, troque SEU-SITE pelo seu endereço:
+# Sitemap: https://SEU-SITE/sitemap.xml
