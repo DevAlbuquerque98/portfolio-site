@@ -81,18 +81,6 @@ window.PORTFOLIO = {
         { grupo: 'Arquitetura', icone: 'layers', texto: 'Arquitetura documentada nos 4 níveis e decisões registradas.', itens: ['C4 Model', 'ADRs', 'MySQL 8', '35 migrations'] }
       ],
 
-      riscos: [
-        { risco: 'Ginásio sem internet confiável', solucao: 'Servidor local no notebook do evento: tudo roda na rede Wi-Fi do ginásio, sem nuvem.' },
-        { risco: 'Wi-Fi oscilar durante um jogo', solucao: 'API sem sessão (JWT): o tablet reconecta e segue, e o banco recusa nota repetida se ela for reenviada.' },
-        { risco: 'Erro de soma ou briga por resultado', solucao: 'Apuração automática, jogo travado após as notas e auditoria de cada alteração.' },
-        { risco: 'Nota lançada por quem não deveria', solucao: 'Árbitro identificado pelo próprio login, perfis por rota e HTTPS.' },
-        { risco: 'Atualização quebrar o sistema no dia', solucao: 'Backup antes do deploy, health check e rollback automático para a versão anterior.' },
-        { risco: 'Perda de dados', solucao: 'Backup do banco a cada 10 minutos e da máquina inteira todo dia.' },
-        { risco: 'Lentidão com o ginásio cheio', solucao: 'Teste de carga, alerta acima de 2 segundos e APM para achar o gargalo.' },
-        { risco: 'Falha sem ninguém perceber', solucao: 'Alertas no Prometheus, página de status no Uptime Kuma e manual com o que fazer em cada alerta.' },
-        { risco: 'Inscrição na categoria errada', solucao: 'Validação automática de idade, graduação, gênero e CPF, com correção na própria tela.' }
-      ],
-
       organizacao: {
         texto: 'Além do software, conduzo 100% da organização do campeonato, com a tecnologia no centro do evento.',
         itens: [
