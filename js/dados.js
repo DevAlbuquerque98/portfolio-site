@@ -102,6 +102,10 @@ window.PORTFOLIO = {
         'Conduzi o projeto de ponta a ponta: levantei os requisitos com o grupo organizador, escrevi épicos e user stories, desenhei a arquitetura no C4 Model, construí o back-end e o front-end, montei a esteira de CI/CD, o servidor e o monitoramento, e gerenciei as entregas com Scrum. Em paralelo, organizo o evento inteiro.',
       tecnologias: ['Engenharia de Software', 'Arquitetura de Software', 'Gestão de Eventos', 'C4 Model', 'Java 21', 'Spring Boot', 'React', 'RabbitMQ', 'TypeScript', 'MySQL', 'Docker', 'GitHub Actions', 'Proxmox', 'Grafana', 'Prometheus', 'Testcontainers', 'SonarCloud', 'Scrum'],
 
+      links: [
+        { texto: 'Ver a arquitetura', icone: 'layers', url: 'https://jogosbomdeginga.github.io/archify/#stack' }
+      ],
+
       capa: 'assets/img/projetos/sisjogos/02-chaveamento-card.webp',
       chipsCapa: [
         { icone: 'radio-tower', texto: 'Notas ao vivo' },
@@ -252,6 +256,7 @@ window.PORTFOLIO = {
       pontosFortes: [{ icone: 'sparkles', titulo: 'Ponto forte', texto: 'Por que ele importa.' }],
       papel: 'O que você fez.',
       tecnologias: ['Java', 'MySQL'],
+      links: [{ texto: 'Ver o sistema', icone: 'layers', url: 'https://...' }],   // opcional: botões para páginas externas
       capa: 'assets/img/projetos/pasta/capa.webp',
       chipsCapa: [{ icone: 'check', texto: 'Etiqueta curta' }],
       imagens: [{ src: 'assets/img/projetos/pasta/tela.webp', legenda: 'Legenda' }],

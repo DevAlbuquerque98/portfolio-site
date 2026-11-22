@@ -53,6 +53,13 @@
     return list.filter((src, k) => src && list.indexOf(src) === k);
   }
 
+  /* Links externos do projeto (ex.: documentação da arquitetura) */
+  function linksHTML(p, wrap) {
+    const html = (p.links || []).filter((l) => /^https:\/\//.test(l.url || '')).map((l) => `
+      <a class="btn btn--glass" href="${esc(l.url)}" target="_blank" rel="noopener">${icon(l.icone || 'external-link')} ${esc(l.texto)} ${icon('arrow-up-right')}</a>`).join('');
+    return html && wrap ? `<div class="${wrap}">${html}</div>` : html;
+  }
+
   function slideHTML(p, i) {
     const d = (p.destaques || []).map((m) => `<div class="metric"><strong>${esc(m.valor)}</strong><span>${esc(m.rotulo)}</span></div>`).join('');
     const isFirst = i === 0;
@@ -80,7 +87,10 @@
           ${d ? `<div class="feat__metrics">${d}</div>` : ''}
           <div class="feat__foot">
             <div class="tech-mini">${(p.tecnologias || []).slice(0, 8).map((t) => `<span>${esc(t)}</span>`).join('')}</div>
-            <button type="button" class="btn btn--primary" data-open-case="${i}">Conhecer o projeto ${icon('arrow-up-right')}</button>
+            <div class="feat__btns">
+              <button type="button" class="btn btn--primary" data-open-case="${i}">Conhecer o projeto ${icon('arrow-up-right')}</button>
+              ${linksHTML(p)}
+            </div>
           </div>
         </div>
       </article>`;
@@ -323,6 +333,7 @@
         </div>
         <h2 class="case__title" id="drawer-title">${esc(p.titulo)}</h2>
         <p class="case__hook">${esc(p.resumo || p.gancho || '')}</p>
+        ${linksHTML(p, 'case__links')}
       </header>
 
       ${(p.competencias || []).length ? `
