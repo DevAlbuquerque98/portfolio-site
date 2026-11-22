@@ -47,6 +47,12 @@
   /* ---------- Projetos: carrossel (card grande) + lista lateral ---------- */
   const show = { index: 0, timer: null, paused: false };
 
+  /* Imagens que passam na tela do card: a capa e depois cada imagem do projeto (versão -card, ou -sm) */
+  function cardShots(p) {
+    const list = [p.capa].concat((p.imagens || []).map((im) => im.card || im.src.replace('.webp', '-sm.webp')));
+    return list.filter((src, k) => src && list.indexOf(src) === k);
+  }
+
   function slideHTML(p, i) {
     const d = (p.destaques || []).map((m) => `<div class="metric"><strong>${esc(m.valor)}</strong><span>${esc(m.rotulo)}</span></div>`).join('');
     const isFirst = i === 0;
@@ -60,7 +66,7 @@
           </div>` : ''}
           <div class="browser">
             <div class="browser__bar"><span></span><span></span><span></span><em>${esc(p.id || '')}</em></div>
-            ${p.capa ? `<img src="${esc(p.capa)}" alt="" loading="lazy" width="960" height="600" />` : ''}
+            ${cardShots(p).length ? `<div class="browser__shots">${cardShots(p).map((src, k) => `<img src="${esc(src)}" alt="" loading="lazy" width="1280" height="720"${k === 0 ? ' class="is-on"' : ''} />`).join('')}</div>` : ''}
           </div>
           ${(p.chipsCapa || []).slice(0, 2).map((c, k) => `<span class="chip-float chip-float--${k + 1}">${icon(c.icone || 'check')} ${esc(c.texto)}</span>`).join('')}
         </div>
@@ -159,6 +165,20 @@
   }
 
   /* ---------- Carrossel de fotos (seção Sobre) ---------- */
+  /* ---------- Tela do card: troca as imagens do projeto sozinha ---------- */
+  function cardScreens() {
+    setInterval(() => {
+      if (document.hidden) return;
+      $$('.browser__shots').forEach((box) => {
+        const imgs = $$('img', box);
+        if (imgs.length < 2) return;
+        const cur = imgs.findIndex((im) => im.classList.contains('is-on'));
+        imgs[cur].classList.remove('is-on');
+        imgs[(cur + 1) % imgs.length].classList.add('is-on');
+      });
+    }, 2600);
+  }
+
   function photoCarousel() {
     const frame = $('[data-carousel]');
     if (!frame) return;
@@ -305,6 +325,14 @@
         <p class="case__hook">${esc(p.resumo || p.gancho || '')}</p>
       </header>
 
+      ${(p.competencias || []).length ? `
+      <section class="case__block">
+        <h4>${icon('sparkles')} O que este projeto entrega</h4>
+        <div class="strengths strengths--accent">${p.competencias.map((c) => `
+          <div class="strength">${icon(c.icone || 'check')}<div><strong>${esc(c.titulo)}</strong><p>${esc(c.texto)}</p></div></div>`).join('')}
+        </div>
+      </section>` : ''}
+
       ${(p.visaoGeral || p.resultado) ? `
       <section class="case__block case__result">
         <h4>${icon('trending-up')} Visão geral</h4>
@@ -322,6 +350,36 @@
       <section class="case__block">
         <h4>${icon('layout-dashboard')} O que o sistema faz</h4>
         <ul class="case__list">${p.solucao.map((s) => `<li>${icon(s.icone || 'check')}<span>${esc(s.texto)}</span></li>`).join('')}</ul>
+      </section>` : ''}
+
+      ${(p.stackGrupos || []).length ? `
+      <section class="case__block">
+        <h4>${icon('cpu')} Tecnologia de ponta</h4>
+        <div class="stackrows">${p.stackGrupos.map((g) => `
+          <div class="stackrow">
+            <div class="stackrow__head">${icon(g.icone || 'code')}<strong>${esc(g.grupo)}</strong></div>
+            ${g.texto ? `<p>${esc(g.texto)}</p>` : ''}
+            <div class="tags">${(g.itens || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+          </div>`).join('')}
+        </div>
+      </section>` : ''}
+
+      ${(p.riscos || []).length ? `
+      <section class="case__block">
+        <h4>${icon('triangle-alert')} Mapa de riscos</h4>
+        <div class="risks">${p.riscos.map((r) => `
+          <div class="risk">
+            <div class="risk__item">${icon('triangle-alert')}<span>${esc(r.risco)}</span></div>
+            <div class="risk__fix">${icon('circle-check')}<span>${esc(r.solucao)}</span></div>
+          </div>`).join('')}
+        </div>
+      </section>` : ''}
+
+      ${p.organizacao ? `
+      <section class="case__block case__event">
+        <h4>${icon('calendar-range')} Gestão do evento</h4>
+        <p>${esc(p.organizacao.texto || '')}</p>
+        ${(p.organizacao.itens || []).length ? `<ul class="case__list">${p.organizacao.itens.map((s) => `<li>${icon(s.icone || 'check')}<span>${esc(s.texto)}</span></li>`).join('')}</ul>` : ''}
       </section>` : ''}
 
       ${strengths}
@@ -750,6 +808,7 @@
     renderIcons();
     bindEvents();
     bindShowcase();
+    cardScreens();
     photoCarousel();
     navOnScroll();
     tilt();

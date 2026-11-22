@@ -32,6 +32,100 @@ window.PORTFOLIO = {
      ------------------------------------------------------------------------ */
   projetos: [
     {
+      id: 'sisjogos',
+      segmento: 'Engenharia e Arquitetura de Software · Gestão de Eventos',
+      selo: 'Jogos Bom de Ginga 2026',
+      seloIcone: 'trophy',
+      titulo: 'SISJOGOS · Plataforma oficial do Jogos Bom de Ginga 2026',
+      tituloCurto: 'SISJOGOS · Jogos Bom de Ginga',
+      resumo:
+        'Plataforma que roda um campeonato de capoeira de ponta a ponta: do cadastro dos atletas ao pódio, com 3 árbitros avaliando cada jogo ao vivo, 3 rodas ao mesmo tempo e operação 100% offline, sem depender de internet.',
+
+      destaques: [
+        { valor: '1.000+', rotulo: 'testes automatizados garantindo cada regra' },
+        { valor: '3', rotulo: 'árbitros avaliando o mesmo jogo ao vivo' },
+        { valor: '100%', rotulo: 'offline, na rede do próprio evento' }
+      ],
+
+      /* Bloco em destaque no topo do estudo de caso */
+      competencias: [
+        { icone: 'boxes', titulo: 'Engenharia de Software', texto: 'Requisitos, épicos e user stories com Definition of Done, ciclo de vida completo e mais de 1.000 testes automatizados.' },
+        { icone: 'layers', titulo: 'Arquitetura de Software', texto: 'Arquitetura modular por domínio, documentada no C4 Model, com decisões registradas e pensada para não falhar no dia.' },
+        { icone: 'calendar-range', titulo: 'Gestão de Eventos', texto: 'Organização completa do campeonato, do regulamento à operação das 3 rodas, com a tecnologia no centro do evento.' },
+        { icone: 'rocket', titulo: 'DevOps e Operação', texto: 'Entrega contínua com rollback automático, servidor próprio e monitoramento completo, sem depender de internet.' }
+      ],
+
+      visaoGeral:
+        'O Jogos Bom de Ginga 2026 é a primeira edição de um campeonato de capoeira que nunca tinha existido: dois dias num ginásio, 3 rodas funcionando ao mesmo tempo e 22 categorias oficiais (11 masculinas e 11 femininas) por idade e graduação. Desde o início, a proposta foi nascer com alta tecnologia: o SISJOGOS gera o chaveamento sozinho, recebe as notas dos árbitros pelo celular ou tablet, apura o resultado na hora e mostra tudo ao vivo num telão e numa página pública.',
+      desafio:
+        'Criar do zero um campeonato que não tinha edição anterior, sem processo, sem histórico e sem ferramenta pronta para usar como base. Em vez de começar no papel e na planilha, como é comum em competições de capoeira, a escolha foi construir o evento já em cima de um sistema próprio: chaveamento, súmulas, soma das notas, desempates e pódio automáticos, com resultado transparente para atletas e público. E com uma restrição dura: o ginásio não tem internet confiável, então nada podia depender da nuvem no dia do evento.',
+      solucao: [
+        { icone: 'scale', texto: 'Julgamento ao vivo: os 3 árbitros avaliam o mesmo jogo ao mesmo tempo, cada um vendo só os botões da sua função. Resultado = Pontos Técnicos − Penalidades, e o jogo trava assim que todas as notas chegam.' },
+        { icone: 'network', texto: 'Chaveamento automático por categoria, com folgas quando o número de atletas é ímpar, disputa de 3º lugar, desempate automático e W.O.' },
+        { icone: 'radio-tower', texto: 'Resultados em tempo real: o vencedor avança na hora e classificação, progressão e pódio aparecem ao vivo no telão e numa página pública.' },
+        { icone: 'calendar-range', texto: 'Programação do evento por período, bloco e roda, com horários que se recalculam sozinhos conforme os inscritos.' },
+        { icone: 'clipboard-check', texto: 'Regulamento configurável e validação dos atletas: idade, graduação, CPF duplicado e termo pendente.' },
+        { icone: 'activity', texto: 'Monitoramento das lutas em andamento, com alertas e detector de inconsistências.' },
+        { icone: 'history', texto: 'Auditoria de quem alterou o quê e quando, com dados pessoais protegidos (LGPD).' }
+      ],
+
+      /* Tecnologia de ponta, agrupada */
+      stackGrupos: [
+        { grupo: 'Back-end', icone: 'server', texto: 'Monólito modular por domínio, inspirado em DDD.', itens: ['Java 21', 'Spring Boot 3.5', 'Spring Security', 'JPA', 'Flyway'] },
+        { grupo: 'Tempo real', icone: 'radio-tower', texto: 'Cada mudança do torneio chega aos painéis na hora, mesmo se a fila cair.', itens: ['RabbitMQ', 'Server-Sent Events', 'WebFlux'] },
+        { grupo: 'Front-end', icone: 'tablet-smartphone', texto: 'Botões grandes, pensados para tablet na beira da roda.', itens: ['React 19', 'TypeScript', 'Vite', 'Ant Design', 'TanStack Query'] },
+        { grupo: 'Segurança', icone: 'shield-check', texto: 'Acesso por perfil testado automaticamente e HTTPS com certificado próprio.', itens: ['JWT com RSA', '4 perfis', 'HTTPS', 'LGPD'] },
+        { grupo: 'DevOps', icone: 'rocket', texto: 'Cada versão sobe sozinha, com backup antes e rollback automático.', itens: ['Docker', 'GitHub Actions', 'GHCR', 'Proxmox', 'Nginx'] },
+        { grupo: 'Observabilidade', icone: 'gauge', texto: 'Alertas avisam antes de o problema virar atraso.', itens: ['Prometheus', 'Grafana', 'Loki', 'Uptime Kuma', 'Glowroot'] },
+        { grupo: 'Qualidade', icone: 'circle-check', texto: 'Integração com banco e fila reais e teste de carga com 200 espectadores.', itens: ['JUnit 5', 'Testcontainers', 'SonarCloud', 'JaCoCo', 'Allure'] },
+        { grupo: 'Arquitetura', icone: 'layers', texto: 'Arquitetura documentada nos 4 níveis e decisões registradas.', itens: ['C4 Model', 'ADRs', 'MySQL 8', '35 migrations'] }
+      ],
+
+      riscos: [
+        { risco: 'Ginásio sem internet confiável', solucao: 'Servidor local no notebook do evento: tudo roda na rede Wi-Fi do ginásio, sem nuvem.' },
+        { risco: 'Wi-Fi oscilar durante um jogo', solucao: 'API sem sessão (JWT): o tablet reconecta e segue, e o banco recusa nota repetida se ela for reenviada.' },
+        { risco: 'Erro de soma ou briga por resultado', solucao: 'Apuração automática, jogo travado após as notas e auditoria de cada alteração.' },
+        { risco: 'Nota lançada por quem não deveria', solucao: 'Árbitro identificado pelo próprio login, perfis por rota e HTTPS.' },
+        { risco: 'Atualização quebrar o sistema no dia', solucao: 'Backup antes do deploy, health check e rollback automático para a versão anterior.' },
+        { risco: 'Perda de dados', solucao: 'Backup do banco a cada 10 minutos e da máquina inteira todo dia.' },
+        { risco: 'Lentidão com o ginásio cheio', solucao: 'Teste de carga, alerta acima de 2 segundos e APM para achar o gargalo.' },
+        { risco: 'Falha sem ninguém perceber', solucao: 'Alertas no Prometheus, página de status no Uptime Kuma e manual com o que fazer em cada alerta.' },
+        { risco: 'Inscrição na categoria errada', solucao: 'Validação automática de idade, graduação, gênero e CPF, com correção na própria tela.' }
+      ],
+
+      organizacao: {
+        texto: 'Além do software, conduzo 100% da organização do campeonato, com a tecnologia no centro do evento.',
+        itens: [
+          { icone: 'clipboard-check', texto: 'Regulamento, 22 categorias oficiais e critérios de arbitragem.' },
+          { icone: 'calendar-range', texto: 'Programação das 3 rodas e dos horários nos dois dias.' },
+          { icone: 'megaphone', texto: 'Divulgação do evento e das categorias.' },
+          { icone: 'server', texto: 'Infraestrutura: servidor, rede e aparelhos da arbitragem.' },
+          { icone: 'users', texto: 'Preparação da equipe de arbitragem e checklist de cada manhã de evento.' }
+        ]
+      },
+
+      pontosFortes: [
+        { icone: 'trophy', titulo: 'Resultado na hora e sem discussão', texto: 'A apuração é automática e cada nota fica registrada.' },
+        { icone: 'wifi-off', titulo: 'Funciona sem internet', texto: 'O evento não para se a conexão cair.' },
+        { icone: 'users', titulo: 'Feito para o dia real', texto: '3 rodas ao mesmo tempo, 3 árbitros por jogo e o público acompanhando no telão.' },
+        { icone: 'shield-check', titulo: 'Confiável por construção', texto: 'Mais de 1.000 testes, travas no banco e rollback automático.' }
+      ],
+      papel:
+        'Conduzi o projeto de ponta a ponta: levantei os requisitos com o grupo organizador, escrevi épicos e user stories, desenhei a arquitetura no C4 Model, construí o back-end e o front-end, montei a esteira de CI/CD, o servidor e o monitoramento, e gerenciei as entregas com Scrum. Em paralelo, organizo o evento inteiro.',
+      tecnologias: ['Engenharia de Software', 'Arquitetura de Software', 'Gestão de Eventos', 'C4 Model', 'Java 21', 'Spring Boot', 'React', 'RabbitMQ', 'TypeScript', 'MySQL', 'Docker', 'GitHub Actions', 'Proxmox', 'Grafana', 'Prometheus', 'Testcontainers', 'SonarCloud', 'Scrum'],
+
+      capa: 'assets/img/projetos/sisjogos/02-chaveamento-card.webp',
+      chipsCapa: [
+        { icone: 'radio-tower', texto: 'Notas ao vivo' },
+        { icone: 'wifi-off', texto: '100% offline' }
+      ],
+      imagens: [
+        { src: 'assets/img/projetos/sisjogos/02-chaveamento.webp', card: 'assets/img/projetos/sisjogos/02-chaveamento-card.webp', legenda: 'Chaveamento automático: fase classificatória e mata-mata com semifinal, final e disputa de 3º lugar.' },
+        { src: 'assets/img/projetos/sisjogos/01-login.webp', card: 'assets/img/projetos/sisjogos/01-login-card.webp', legenda: 'Entrada da plataforma: acesso da organização e da arbitragem e resultados ao vivo para o público.' }
+      ],
+      fotos: []
+    },
+    {
       id: 'scm',
       segmento: 'Engenharia e Telecomunicação · Gestão de Processos',
       selo: 'SCM Engenharia de Telecomunicações',
@@ -74,20 +168,20 @@ window.PORTFOLIO = {
       tecnologias: ['Engenharia de Requisitos', 'Arquitetura de Processos', 'Scrum', 'Kanban', 'SharePoint', 'Power BI', 'CRM', 'OneDrive', 'Teams', 'Outlook', 'Microsoft 365', 'Mapeamento de Processos', 'Cadeia de Valor', 'KPIs'],
 
       /* Prints com nomes de clientes, consultores e projetistas borrados */
-      capa: 'assets/img/projetos/scm/capa.webp',
+      capa: 'assets/img/projetos/scm/06-bi-comercial-card.webp',
       /* Até 2 etiquetas flutuando sobre a tela do card */
       chipsCapa: [
         { icone: 'filter', texto: 'Funil medido fase a fase' },
         { icone: 'database', texto: 'Base única de dados' }
       ],
       imagens: [
-        { src: 'assets/img/projetos/scm/01-portal-modulos.webp', legenda: 'Portal Gestão Integrada: todos os módulos da empresa em uma única base.' },
-        { src: 'assets/img/projetos/scm/02-comercial-contratos.webp', legenda: 'Comercial: cada contrato com serviços, valor, vigência e consultor em um só lugar.' },
-        { src: 'assets/img/projetos/scm/06-bi-comercial.webp', legenda: 'Power BI Comercial: faturamento, ticket médio, renovação e desempenho por consultor.' },
-        { src: 'assets/img/projetos/scm/07-bi-financeiro.webp', legenda: 'Power BI Financeiro: situação dos contratos, vencimentos e inadimplência por estado.' },
-        { src: 'assets/img/projetos/scm/05-bi-menu-kpis.webp', legenda: 'Resultado de KPIs: os indicadores de cada área reunidos em um painel.' },
-        { src: 'assets/img/projetos/scm/03-gestao-projetos-inicio.webp', legenda: 'Gestão de Projetos: atendimento ao cliente e acompanhamento por projetista.' },
-        { src: 'assets/img/projetos/scm/04-projetos-painel-etapas.webp', legenda: 'Projetos em painel por etapa, do início à aprovação.' }
+        { src: 'assets/img/projetos/scm/01-portal-modulos.webp', card: 'assets/img/projetos/scm/01-portal-modulos-card.webp', legenda: 'Portal Gestão Integrada: todos os módulos da empresa em uma única base.' },
+        { src: 'assets/img/projetos/scm/02-comercial-contratos.webp', card: 'assets/img/projetos/scm/02-comercial-contratos-card.webp', legenda: 'Comercial: cada contrato com serviços, valor, vigência e consultor em um só lugar.' },
+        { src: 'assets/img/projetos/scm/06-bi-comercial.webp', card: 'assets/img/projetos/scm/06-bi-comercial-card.webp', legenda: 'Power BI Comercial: faturamento, ticket médio, renovação e desempenho por consultor.' },
+        { src: 'assets/img/projetos/scm/07-bi-financeiro.webp', card: 'assets/img/projetos/scm/07-bi-financeiro-card.webp', legenda: 'Power BI Financeiro: situação dos contratos, vencimentos e inadimplência por estado.' },
+        { src: 'assets/img/projetos/scm/05-bi-menu-kpis.webp', card: 'assets/img/projetos/scm/05-bi-menu-kpis-card.webp', legenda: 'Resultado de KPIs: os indicadores de cada área reunidos em um painel.' },
+        { src: 'assets/img/projetos/scm/03-gestao-projetos-inicio.webp', card: 'assets/img/projetos/scm/03-gestao-projetos-inicio-card.webp', legenda: 'Gestão de Projetos: atendimento ao cliente e acompanhamento por projetista.' },
+        { src: 'assets/img/projetos/scm/04-projetos-painel-etapas.webp', card: 'assets/img/projetos/scm/04-projetos-painel-etapas-card.webp', legenda: 'Projetos em painel por etapa, do início à aprovação.' }
       ],
       fotos: []
     },
